@@ -5,9 +5,18 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// add this new configuration of your vercel database with postgress
+// add the new .env variable POSTGRES_URL_NON_POOLING nad POSTGRES_PRISMA_URL
+// run npx prisma migrate dev
+// and finally npx prisma generate
+// on package.json add the new script "postinstall":"prisma generate" 
+// on console tun npm i vercel -g
+// npx vercel login
+// and npx vercel to deploy
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 model Task {
