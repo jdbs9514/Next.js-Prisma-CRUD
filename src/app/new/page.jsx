@@ -45,7 +45,7 @@ const NewTask = ({ params }) => {
       });
       const data = await res.json()
     }
-   
+
     router.push("/")
     router.refresh()
   }
@@ -80,11 +80,32 @@ const NewTask = ({ params }) => {
           onChange={(e) => setDescription(e.target.value)}
           value={description}
         />
-        <button
-          className="bg-white font-bold py-2 px-4 rounded hover:bg-slate-300"
-        >
-          Submit
-        </button>
+        <div className="flex justify-between">
+          <button
+            type="submit"
+            className="bg-white font-bold py-2 px-4 rounded hover:bg-slate-300"
+          >
+            Submit
+          </button>
+          {
+            params.id && (
+              <button
+                className="bg-red-500 font-bold py-2 px-4 rounded hover:bg-slate-300 text-white"
+                type="button"
+                onClick={async () => {
+                  const res = await fetch(`/api/tasks/${params.id}`, {
+                    method: "DELETE",
+                  })
+                  const data = await res.json()
+                  router.push("/")
+                  router.refresh()
+                }}
+              >
+                Delete
+              </button>
+            )
+          }
+        </div>
       </form>
     </div>
   )
