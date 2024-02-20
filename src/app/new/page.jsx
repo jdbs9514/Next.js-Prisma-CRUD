@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 const NewTask = () => {
 
   const router = useRouter();
-  
+
   const onSubmit = async (e) => {
     
     e.preventDefault();
@@ -50,7 +50,7 @@ const NewTask = () => {
           placeholder="Description"
         />
         <button
-          className="bg-white font-bold py-2 px-4 rounded hover:bg-yellow-300"
+          className="bg-white font-bold py-2 px-4 rounded hover:bg-slate-300"
         >
           Submit
         </button>
